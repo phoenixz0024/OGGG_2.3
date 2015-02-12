@@ -6,5 +6,6 @@ public class Test {
 		
 		// This is a comment
 		System.out.println("test");
+		System.out.println("Sloerie");
 	}
 }
