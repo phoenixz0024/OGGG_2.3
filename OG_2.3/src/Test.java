@@ -6,6 +6,10 @@ public class Test {
 		
 		// This is a comment
 		System.out.println("test");
+		
+		// laatste test
 		System.out.println("Sloerie");
+		
+		
 	}
 }
