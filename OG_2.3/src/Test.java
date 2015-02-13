@@ -33,6 +33,7 @@ public class Test
 		}
 		catch(ArraySizeException e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 	}
