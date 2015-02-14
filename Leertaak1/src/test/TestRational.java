@@ -66,6 +66,14 @@ public class TestRational {
 		assertEquals(25.0, r.getNumerator());
 		assertEquals(2.0, r.getDenominator());		
 	}
+	
+	@Test
+	public void testDivideByZero()
+	{
+		r.setNumerator(5.0);
+		r.setDenominator(2.5);
+		r.
+	}
 
 
 

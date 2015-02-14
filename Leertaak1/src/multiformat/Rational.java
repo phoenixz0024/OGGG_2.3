@@ -142,9 +142,15 @@ public class Rational
 	 */
 	public Rational div(Rational other) 
 	{
-		return new Rational(
+		if(other.getNumerator() == 0){
+			System.out.println("Can not divide by zero");
+			return this;
+		}
+		else{
+			return new Rational(
 			numerator * other.denominator,
 			denominator * other.numerator);
+		}
 	}
 
 	/**
