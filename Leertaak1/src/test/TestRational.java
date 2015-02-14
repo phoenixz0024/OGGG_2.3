@@ -73,6 +73,8 @@ public class TestRational {
 		r.setNumerator(1.0);
 		r.setDenominator(1.0);
 		r.div(new Rational(0.0,1.0));
+		
+		assertEquals(0.0, r.getNumerator());
 	}
 
 
