@@ -143,8 +143,8 @@ public class Rational
 	public Rational div(Rational other) 
 	{
 		if(other.getNumerator() == 0){
-			System.out.println("Can not divide by zero");
-			return this;
+			System.out.println("Cannot divide by zero");
+			return other;
 		}
 		else{
 			return new Rational(

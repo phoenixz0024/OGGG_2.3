@@ -72,7 +72,8 @@ public class TestRational {
 	{
 		r.setNumerator(5.0);
 		r.setDenominator(2.5);
-		r.
+		
+		System.out.println(r.div(new Rational(1.0,0.0)).toString());
 	}
 
 
