@@ -31,8 +31,23 @@ public class Calculator {
   private Base base = new DecimalBase();
 
   public void addOperand(String newOperand) throws FormatException {
-	  operand_1 = operand_0;
-      operand_0 = format.parse(newOperand, base);
+	  if(base.getName() == "dec"&&(!newOperand.matches("[0123456789.]+"))){
+			 System.out.println("Insert a decimal value"); 
+	  }
+	  else if(base.getName() == "hex"&&(!newOperand.matches("[0123456789ABCDEF]+"))){
+			  System.out.println("Insert a hexadecimal value"); 
+	  }
+	  else if(base.getName() == "bin"&&(!newOperand.matches("[01]+"))){
+			  System.out.println("Insert a binary value"); 
+	  }
+	  else if(base.getName() == "oct"&&(!newOperand.matches("[01234567]+"))){
+			  System.out.println("Insert an octal value"); 
+	  }
+	  else{	  
+		  operand_1 = operand_0;
+	      operand_0 = format.parse(newOperand, base);
+	  }
+	  
   }
 
   public void add(){
