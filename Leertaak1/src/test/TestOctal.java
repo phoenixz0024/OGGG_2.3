@@ -10,7 +10,9 @@ import org.junit.Test;
 /**
  * JUnit Testcase to test Octal numbering base. 
  * Note that this class uses 'annotations' (the @...). This is a Java 1.5 feature. 
- * @author Kas Feenema & Rafael van den Berg
+ * @author Kas Feenema  
+ * @author Rafael van den Berg
+ * @version 1.0
  *
  */
 public class TestOctal 
