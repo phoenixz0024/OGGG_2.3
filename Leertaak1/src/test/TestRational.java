@@ -70,10 +70,9 @@ public class TestRational {
 	@Test
 	public void testDivideByZero()
 	{
-		r.setNumerator(5.0);
-		r.setDenominator(2.5);
-		
-		System.out.println(r.div(new Rational(1.0,0.0)).toString());
+		r.setNumerator(1.0);
+		r.setDenominator(1.0);
+		r.div(new Rational(0.0,1.0));
 	}
 
 
