@@ -47,7 +47,6 @@ public class Calculator {
 		  operand_1 = operand_0;
 	      operand_0 = format.parse(newOperand, base);
 	  }
-	  
   }
 
   public void add(){
