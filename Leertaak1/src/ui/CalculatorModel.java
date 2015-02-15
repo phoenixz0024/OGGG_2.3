@@ -22,7 +22,7 @@ public class CalculatorModel
 			calc.addOperand(operand);
 		} 
 		catch (FormatException e) {
-			e.printStackTrace();
+			CalculatorView.message.setText(e.getMessage());
 		}
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	}
@@ -79,6 +79,7 @@ public class CalculatorModel
 		calc.delete();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
+	
 	
 	public void addActionListener( ActionListener l){
 		actionListenerList.add( l );

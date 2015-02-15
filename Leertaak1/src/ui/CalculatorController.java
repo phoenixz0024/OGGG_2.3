@@ -11,8 +11,11 @@ public class CalculatorController implements ActionListener
 {
 	CalculatorModel cm;
 	static ArrayList<JButton> buttons = new ArrayList<JButton>();
-	static JButton zero,A,B,C,D,E,F,point,divider,plus,min,multiply,divide,answer;
+	static JButton zero,A,B,C,D,E,F,point,divider,plus,min,multiply,divide,answer, clear;
 	static JComboBox baseMenu,pointFormatMenu;
+	String operandOne = "";
+	String operandTwo = "";
+	String Operator = "";
 	
 	public CalculatorController(CalculatorModel c)
 	{
@@ -37,6 +40,7 @@ public class CalculatorController implements ActionListener
 		min.addActionListener(this);
 		multiply.addActionListener(this);
 		divide.addActionListener(this);
+		clear.addActionListener(this);
 		
 		baseMenu.addActionListener(this);
 		pointFormatMenu.addActionListener(this);
@@ -44,7 +48,7 @@ public class CalculatorController implements ActionListener
 	}
 	
 	 public void actionPerformed(ActionEvent e)
-	    {
+	 {
 	        if (e.getSource() == A){
 	            cm.addOperand("A");
 	        } 
@@ -64,52 +68,55 @@ public class CalculatorController implements ActionListener
 	            cm.addOperand("F");
 	        } 
 	        if (e.getSource() == zero){
-	            cm.addOperand("0");
+	        	cm.addOperand("0");
 	        } 
 	        if (e.getSource() == buttons.get(0)){
-	            cm.addOperand("1");
+	        	cm.addOperand("1");
 	        }
 	        if (e.getSource() == buttons.get(1)){
-	            cm.addOperand("2");
+	        	cm.addOperand("2");
 	        }
 	        if (e.getSource() == buttons.get(2)){
-	            cm.addOperand("3");
+	        	cm.addOperand("3");
 	        }
 	        if (e.getSource() == buttons.get(3)){
-	            cm.addOperand("4");
+	        	cm.addOperand("4");
 	        }
 	        if (e.getSource() == buttons.get(4)){
-	            cm.addOperand("5");
+	        	cm.addOperand("5");
 	        }
 	        if (e.getSource() == buttons.get(5)){
-	            cm.addOperand("6");
+	        	cm.addOperand("6");
 	        }
 	        if (e.getSource() == buttons.get(6)){
-	            cm.addOperand("7");
+	        	cm.addOperand("7");
 	        }
 	        if (e.getSource() == buttons.get(7)){
-	            cm.addOperand("8");
+	        	cm.addOperand("8");
 	        }
 	        if (e.getSource() == buttons.get(8)){
-	            cm.addOperand("9");
+	        	cm.addOperand("9");
 	        }
 	        if (e.getSource() == point){
-	            cm.addOperand(".");
+	        	cm.addOperand(".");
 	        }
 	        if (e.getSource() == divider){
-	            cm.addOperand("/");
+	        	if(baseMenu.getSelectedItem().toString()!="rat"){
+	        		CalculatorView.message.setText("Divider can only be inserted if rational format is used");
+	        	}
+	        	cm.addOperand("/");
 	        }
 	        if (e.getSource() == plus){
-	            cm.add();
+	        	cm.add();
 	        }
 	        if (e.getSource() == min){
-	            cm.subtract();
+	        	cm.subtract();
 	        }
 	        if (e.getSource() == multiply){
-	            cm.multiply();
+	        	cm.multiply();
 	        }
 	        if (e.getSource() == divide){
-	            cm.divide();
+	        	cm.divide();
 	        }
 	        if (e.getSource() == baseMenu){
 	        	if(baseMenu.getSelectedItem().toString() == "bin"){
@@ -135,6 +142,9 @@ public class CalculatorController implements ActionListener
 	        	if(pointFormatMenu.getSelectedItem().toString() == "float"){
 	        		cm.setFormat("float");
 	        	}
+	        }
+	        if (e.getSource() == clear){
+	        	cm.clear();
 	        }
 		}
 	 
@@ -163,6 +173,7 @@ public class CalculatorController implements ActionListener
 			min = new JButton("-");
 			multiply = new JButton("*");
 			divide = new JButton("/");
+			clear = new JButton("clear");
 			
 			CalculatorView.buttonPanel.add(point);
 			CalculatorView.buttonPanel.add(divider);
@@ -172,7 +183,7 @@ public class CalculatorController implements ActionListener
 			CalculatorView.buttonPanel.add(min);
 			CalculatorView.buttonPanel.add(multiply);
 			CalculatorView.buttonPanel.add(divide);
-			
+			CalculatorView.clearPanel.add(clear);
 			
 			// 1 to 9 and ABCDEF
 			for(int i = 0;i<9;i++){

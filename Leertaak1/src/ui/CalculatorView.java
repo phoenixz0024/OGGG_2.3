@@ -18,7 +18,7 @@ public class CalculatorView implements ActionListener
 {
 	JFrame window;
 	JPanel contentPanel, screenView, messagePanel;
-	static JPanel buttonPanel;
+	static JPanel buttonPanel, clearPanel;
 	JLabel screenText;
 	public static JLabel message;
 
@@ -44,7 +44,7 @@ public class CalculatorView implements ActionListener
 	public void createFrame()
 	{
 		window = new JFrame("Calculator");
-		window.setSize(400,555);
+		window.setSize(400,580);
 		window.setResizable(false);
 		window.setLocationRelativeTo(null);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +60,7 @@ public class CalculatorView implements ActionListener
 		screenView.setPreferredSize(new Dimension(380,50));
 		contentPanel.add(screenView);
 		
-		screenText = new JLabel("0   ", SwingConstants.RIGHT);
+		screenText = new JLabel("[0.0],[0.0]", SwingConstants.CENTER);
 		screenView.add(screenText);
 		
 		buttonPanel = new JPanel(new GridLayout(5,5));
@@ -74,6 +74,10 @@ public class CalculatorView implements ActionListener
 		message = new JLabel("No recent messages", SwingConstants.LEFT);
 		message.setForeground(Color.red);
 		messagePanel.add(message);
+		
+		clearPanel = new JPanel(new GridLayout(1,1));
+		clearPanel.setPreferredSize(new Dimension(380,20));
+		contentPanel.add(clearPanel);
 	}
 	
 	

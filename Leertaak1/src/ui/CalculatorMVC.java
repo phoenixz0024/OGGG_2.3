@@ -13,7 +13,6 @@ public class CalculatorMVC
 		cv = new CalculatorView(Color.black);
 		cm = new CalculatorModel();
 		cc = new CalculatorController(cm);
-		
 		cm.addActionListener(cv);
 	}
 }
