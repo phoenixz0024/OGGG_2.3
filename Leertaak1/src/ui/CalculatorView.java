@@ -4,9 +4,14 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 
 public class CalculatorView implements ActionListener
@@ -14,7 +19,8 @@ public class CalculatorView implements ActionListener
 	JFrame window;
 	JPanel contentPanel, screenView, messagePanel;
 	static JPanel buttonPanel;
-	JLabel screenText, message;
+	JLabel screenText;
+	public static JLabel message;
 
 	
 	
@@ -66,6 +72,7 @@ public class CalculatorView implements ActionListener
 		messagePanel.setPreferredSize(new Dimension(380,50));
 		contentPanel.add(messagePanel);
 		message = new JLabel("No recent messages", SwingConstants.LEFT);
+		message.setForeground(Color.red);
 		messagePanel.add(message);
 	}
 	
