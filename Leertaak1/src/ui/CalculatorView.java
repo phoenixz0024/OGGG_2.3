@@ -4,9 +4,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,9 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * 
- * @author Kas Feenema & Rafael van den Berg
- *
+ * View of the Calculator
+ * @author Kas Feenema
+ * @author Rafael van den Berg
+ * @version 1.0
  */
 public class CalculatorView implements ActionListener
 {
@@ -26,6 +24,10 @@ public class CalculatorView implements ActionListener
 	public static JLabel screenText;
 	public static JLabel message;
 	
+	/**
+	 * Constructor
+	 * @param Color c
+	 */
 	public CalculatorView(Color c)
 	{
 		createFrame();
@@ -37,6 +39,10 @@ public class CalculatorView implements ActionListener
 		window.setVisible(true);
 	}
 	
+	/**
+	 * Updates the label of the calculator
+	 * @param ActionEvent e
+	 */
 	public void actionPerformed(ActionEvent e )
 	{	
 		screenText.setText(CalculatorController.currentOperand);
@@ -46,6 +52,9 @@ public class CalculatorView implements ActionListener
 		window.revalidate();
 	}
 	
+	/**
+	 * Creates the frame of the calculator
+	 */
 	public void createFrame()
 	{
 		window = new JFrame("Calculator");
@@ -55,6 +64,10 @@ public class CalculatorView implements ActionListener
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * Adds all panels to the main window of the calculator
+	 * @param Color c
+	 */
 	public void addPanels(Color c)
 	{
 		contentPanel = new JPanel();
@@ -66,6 +79,7 @@ public class CalculatorView implements ActionListener
 		contentPanel.add(screenView);
 		
 		screenText = new JLabel("Insert a value..", SwingConstants.CENTER);
+		screenText.setFont(screenText.getFont().deriveFont(32.0f));
 		screenView.add(screenText);
 		
 		buttonPanel = new JPanel(new GridLayout(5,5));

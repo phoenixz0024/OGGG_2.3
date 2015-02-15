@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+/**
+ * Controller for the Calculator
+ * @author Kas Feenema
+ * @author Rafael van den Berg
+ * @version 1.0
+ */
 public class CalculatorController implements ActionListener
 {
 	public static CalculatorModel cm;
@@ -16,6 +22,10 @@ public class CalculatorController implements ActionListener
 	static String currentOperand = "";
 	static String Operator = "";
 	
+	/**
+	 * Constructor of the controller
+	 * @param CalculatorModel c
+	 */
 	public CalculatorController(CalculatorModel c)
 	{
 		cm = c;
@@ -45,10 +55,14 @@ public class CalculatorController implements ActionListener
 		pointFormatMenu.addActionListener(this);
 	}
 	
+	/**
+	 * Listeners for all the buttons
+	 * @param ActionEvent e
+	 */ 
 	 public void actionPerformed(ActionEvent e)
 	 {
+		//is the = button entered
 		CalculatorModel.done = false;
-		//CalculatorController.currentOperand = "";
 		cm.update();
 	        if (e.getSource() == A){
 	        	currentOperand += "A";
@@ -189,8 +203,11 @@ public class CalculatorController implements ActionListener
 	        cm.update();
 		}
 	 
+	 /**
+	  * Adds all the buttons to the buttonPanel of the calculator
+	  */ 
 	 public static void addButtons()
-		{
+	 {
 			//dropdown menu's for the format and base
 			baseMenu = new JComboBox<String>();
 			baseMenu.addItem("dec");
