@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class CalculatorView implements ActionListener
 	static JPanel buttonPanel, clearPanel;
 	public static JLabel screenText;
 	public static JLabel message;
+	public static JLabel amountOfCalculations;
 	
 	/**
 	 * Constructor
@@ -88,14 +90,17 @@ public class CalculatorView implements ActionListener
 		contentPanel.add(buttonPanel);
 		
 		messagePanel = new JPanel(new GridLayout(1,1));
-		messagePanel.setPreferredSize(new Dimension(380,50));
+		messagePanel.setPreferredSize(new Dimension(380,30));
 		contentPanel.add(messagePanel);
 		message = new JLabel("No recent messages", SwingConstants.LEFT);
 		message.setForeground(Color.red);
 		messagePanel.add(message);
 		
-		clearPanel = new JPanel(new GridLayout(1,1));
-		clearPanel.setPreferredSize(new Dimension(380,20));
+		clearPanel = new JPanel(new GridLayout(1,2));
+		clearPanel.setPreferredSize(new Dimension(380,40));
 		contentPanel.add(clearPanel);
+		
+		amountOfCalculations = new JLabel("Calculations : 0");
+		clearPanel.add(amountOfCalculations);
 	}
 }

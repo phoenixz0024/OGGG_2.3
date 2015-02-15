@@ -21,6 +21,7 @@ public class CalculatorController implements ActionListener
 	static JComboBox baseMenu,pointFormatMenu;
 	static String currentOperand = "";
 	static String Operator = "";
+	static int calculations = 0;
 	
 	/**
 	 * Constructor of the controller
@@ -199,6 +200,8 @@ public class CalculatorController implements ActionListener
 	        	if(Operator == "/"){
 	        		cm.divide();
 	        	}
+	        	calculations++;
+	        	CalculatorView.amountOfCalculations.setText("Calculations :"+calculations);
 	        }
 	        cm.update();
 		}
