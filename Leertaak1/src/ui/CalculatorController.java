@@ -13,9 +13,8 @@ public class CalculatorController implements ActionListener
 	static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	static JButton zero,A,B,C,D,E,F,point,divider,plus,min,multiply,divide,answer, clear;
 	static JComboBox baseMenu,pointFormatMenu;
-	String operandOne = "";
-	String operandTwo = "";
-	String Operator = "";
+	static String currentOperand = "";
+	static String Operator = "";
 	
 	public CalculatorController(CalculatorModel c)
 	{
@@ -49,74 +48,97 @@ public class CalculatorController implements ActionListener
 	
 	 public void actionPerformed(ActionEvent e)
 	 {
+		CalculatorModel.done = false;
+		//CalculatorController.currentOperand = "";
+		cm.update();
 	        if (e.getSource() == A){
-	            cm.addOperand("A");
+	        	currentOperand += "A";
 	        } 
 	        if (e.getSource() == B){
-	            cm.addOperand("B");
+	        	currentOperand += "B";
 	        } 
 	        if (e.getSource() == C){
-	            cm.addOperand("C");
+	        	currentOperand += "C";
 	        } 
 	        if (e.getSource() == D){
-	            cm.addOperand("D");
+	        	currentOperand += "D";
 	        } 
 	        if (e.getSource() == E){
-	            cm.addOperand("E");
+	        	currentOperand += "E";
 	        } 
 	        if (e.getSource() == F){
-	            cm.addOperand("F");
+	        	currentOperand += "F";
 	        } 
 	        if (e.getSource() == zero){
-	        	cm.addOperand("0");
+	        	currentOperand += "0";
 	        } 
 	        if (e.getSource() == buttons.get(0)){
-	        	cm.addOperand("1");
+	        	currentOperand += "1";
 	        }
 	        if (e.getSource() == buttons.get(1)){
-	        	cm.addOperand("2");
+	        	currentOperand += "2";
 	        }
 	        if (e.getSource() == buttons.get(2)){
-	        	cm.addOperand("3");
+	        	currentOperand += "3";
 	        }
 	        if (e.getSource() == buttons.get(3)){
-	        	cm.addOperand("4");
+	        	currentOperand += "4";
 	        }
 	        if (e.getSource() == buttons.get(4)){
-	        	cm.addOperand("5");
+	        	currentOperand += "5";
 	        }
 	        if (e.getSource() == buttons.get(5)){
-	        	cm.addOperand("6");
+	        	currentOperand += "6";
 	        }
 	        if (e.getSource() == buttons.get(6)){
-	        	cm.addOperand("7");
+	        	currentOperand += "7";
 	        }
 	        if (e.getSource() == buttons.get(7)){
-	        	cm.addOperand("8");
+	        	currentOperand += "8";
 	        }
 	        if (e.getSource() == buttons.get(8)){
-	        	cm.addOperand("9");
+	        	currentOperand += "9";
 	        }
 	        if (e.getSource() == point){
-	        	cm.addOperand(".");
+	        	if(!currentOperand.contains("."))
+	        	currentOperand += ".";
+	        	else{
+	        		CalculatorView.message.setText("Operand already contains a \".\"");
+	        	}
 	        }
 	        if (e.getSource() == divider){
-	        	if(baseMenu.getSelectedItem().toString()!="rat"){
+	        	if(pointFormatMenu.getSelectedItem().toString() != "rat"){
 	        		CalculatorView.message.setText("Divider can only be inserted if rational format is used");
 	        	}
-	        	cm.addOperand("/");
+	        	else{
+	        	if(!currentOperand.contains("/"))
+	        		if(currentOperand.length()<1){
+	        			CalculatorView.message.setText("Insert a value first");
+	        		}
+	        		else{
+	        			currentOperand += "/";
+	        		}
+	        	}
 	        }
 	        if (e.getSource() == plus){
-	        	cm.add();
+	        	cm.addOperand(currentOperand);
+	        	Operator = "+";
+	        	currentOperand = "";
 	        }
 	        if (e.getSource() == min){
-	        	cm.subtract();
+	        	cm.addOperand(currentOperand);
+	        	Operator = "-";
+	        	currentOperand = "";
 	        }
 	        if (e.getSource() == multiply){
-	        	cm.multiply();
+	        	cm.addOperand(currentOperand);
+	        	Operator = "*";
+	        	currentOperand = "";
 	        }
 	        if (e.getSource() == divide){
-	        	cm.divide();
+	        	cm.addOperand(currentOperand);
+	        	Operator = "/";
+	        	currentOperand = "";
 	        }
 	        if (e.getSource() == baseMenu){
 	        	if(baseMenu.getSelectedItem().toString() == "bin"){
@@ -146,6 +168,22 @@ public class CalculatorController implements ActionListener
 	        if (e.getSource() == clear){
 	        	cm.clear();
 	        }
+	        if (e.getSource() == answer){
+	        	cm.addOperand(currentOperand);
+	        	if(Operator == "+"){
+	        		cm.add();
+	        	}
+	        	if(Operator == "-"){
+	        		cm.subtract();
+	        	}
+	        	if(Operator == "*"){
+	        		cm.multiply();
+	        	}
+	        	if(Operator == "/"){
+	        		cm.divide();
+	        	}
+	        }
+	        cm.update();
 		}
 	 
 	 public static void addButtons()

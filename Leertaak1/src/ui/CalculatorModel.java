@@ -10,6 +10,7 @@ public class CalculatorModel
 {
 	private ArrayList<ActionListener> actionListenerList = new ArrayList<ActionListener>();
 	public static Calculator calc;
+	static boolean done = false;
 	
 	public CalculatorModel()
 	{
@@ -31,24 +32,37 @@ public class CalculatorModel
 	{
 		calc.subtract();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
+	    CalculatorController.currentOperand = calc.secondOperand();
+	    done = true;
 	}
 	
 	public void add()
 	{
 		calc.add();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
+	    CalculatorController.currentOperand = calc.secondOperand();
+	    done = true;
+	    
+    	System.out.println(CalculatorController.currentOperand);
+    	System.out.println(calc.secondOperand());
+    	System.out.println(calc.firstOperand());
 	} 
 	
 	public void multiply()
 	{
 		calc.multiply();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
+	    CalculatorController.currentOperand = calc.secondOperand();
+	    done = true;
 	} 
 	
 	public void divide()
 	{
 		calc.divide();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
+	    CalculatorController.currentOperand = calc.secondOperand();
+	    done = true;
+	    
 	} 
 	
 	public void setBase(String base)
@@ -77,6 +91,11 @@ public class CalculatorModel
 	public void clear()
 	{
 		calc.delete();
+	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
+	} 
+	
+	public void update()
+	{
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	

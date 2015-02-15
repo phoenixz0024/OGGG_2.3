@@ -36,8 +36,12 @@ public class CalculatorView implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e )
-	{
-		screenText.setText("["+CalculatorModel.calc.firstOperand()+"],["+CalculatorModel.calc.secondOperand()+"]");
+	{	
+		
+		screenText.setText(CalculatorController.currentOperand);
+		if(CalculatorModel.done == true)
+			CalculatorController.currentOperand = "";
+		
 		window.revalidate();
 	}
 	
@@ -60,7 +64,7 @@ public class CalculatorView implements ActionListener
 		screenView.setPreferredSize(new Dimension(380,50));
 		contentPanel.add(screenView);
 		
-		screenText = new JLabel("[0.0],[0.0]", SwingConstants.CENTER);
+		screenText = new JLabel("Insert a value..", SwingConstants.CENTER);
 		screenView.add(screenText);
 		
 		buttonPanel = new JPanel(new GridLayout(5,5));
