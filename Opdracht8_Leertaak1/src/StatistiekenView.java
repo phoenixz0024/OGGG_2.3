@@ -11,11 +11,12 @@ public class StatistiekenView extends JPanel implements ActionListener
 {
 	DobbelsteenModel d;
 	int waarde;
-	JLabel een, twee, drie, vier, vijf, zes;
+	int worp = 0;
+	JLabel een, twee, drie, vier, vijf, zes, worpen;
 	
 	public StatistiekenView()
 	{
-	    this.setLayout(new GridLayout(7,2));
+	    this.setLayout(new GridLayout(8,2));
 	    
 	    this.add(new JLabel("Nummer"));
 	    this.add(new JLabel("Gegooid"));
@@ -43,12 +44,19 @@ public class StatistiekenView extends JPanel implements ActionListener
 	    this.add(new JLabel("6 :"));
 	    zes = new JLabel("0");
 	    this.add(zes);
+	    
+	    this.add(new JLabel("Worpen :"));
+	    worpen = new JLabel("0");
+	    this.add(worpen);
 	}
 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		worp++;
+		worpen.setText(Integer.toString(worp));
+		
 		int amount;
 		d = (DobbelsteenModel) e.getSource();
 		waarde = d.getWaarde();
