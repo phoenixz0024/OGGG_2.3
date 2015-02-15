@@ -10,7 +10,7 @@ public class CalculatorMVC
 	
 	public static void main(String[] args)
 	{
-		cv = new CalculatorView(Color.blue);
+		cv = new CalculatorView(Color.black);
 		cm = new CalculatorModel();
 		cc = new CalculatorController(cm);
 		

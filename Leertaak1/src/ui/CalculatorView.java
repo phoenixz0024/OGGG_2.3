@@ -12,9 +12,9 @@ import javax.swing.*;
 public class CalculatorView implements ActionListener
 {
 	JFrame window;
-	JPanel contentPanel, screenView;
+	JPanel contentPanel, screenView, messagePanel;
 	static JPanel buttonPanel;
-	JLabel screenText;
+	JLabel screenText, message;
 
 	
 	
@@ -38,7 +38,7 @@ public class CalculatorView implements ActionListener
 	public void createFrame()
 	{
 		window = new JFrame("Calculator");
-		window.setSize(400,500);
+		window.setSize(400,555);
 		window.setResizable(false);
 		window.setLocationRelativeTo(null);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +61,12 @@ public class CalculatorView implements ActionListener
 		buttonPanel.setBackground(Color.green);
 		buttonPanel.setPreferredSize(new Dimension(380,400));
 		contentPanel.add(buttonPanel);
+		
+		messagePanel = new JPanel(new GridLayout(1,1));
+		messagePanel.setPreferredSize(new Dimension(380,50));
+		contentPanel.add(messagePanel);
+		message = new JLabel("No recent messages", SwingConstants.LEFT);
+		messagePanel.add(message);
 	}
 	
 	
