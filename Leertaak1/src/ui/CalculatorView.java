@@ -12,30 +12,27 @@ import javax.swing.*;
 public class CalculatorView implements ActionListener
 {
 	JFrame window;
-	JPanel contentPanel, screenView, buttonPanel;
+	JPanel contentPanel, screenView;
+	static JPanel buttonPanel;
 	JLabel screenText;
-	ArrayList<JButton> buttons = new ArrayList<JButton>();
-	JButton zero,A,B,C,D,E,F,point,divider,plus,min,multiply,divide,answer;
-	JComboBox baseMenu,pointFormatMenu;
+
 	
 	
-	public CalculatorView()
+	public CalculatorView(Color c)
 	{
 		createFrame();
 		
-		addPanels();
+		addPanels(c);
 		
-		addButtons();
+		CalculatorController.addButtons();
 		
 		window.setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e )
 	{
-		screenText.setText(CalculatorModel.calc.getBase().getName()+","
-                            + CalculatorModel.calc.getFormat().getName()+","
-                            + CalculatorModel.calc.firstOperand() + ", "
-                            +CalculatorModel.calc.secondOperand() + "] >");
+		screenText.setText("["+CalculatorModel.calc.firstOperand()+"],["+CalculatorModel.calc.secondOperand()+"]");
+		window.revalidate();
 	}
 	
 	public void createFrame()
@@ -47,10 +44,10 @@ public class CalculatorView implements ActionListener
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public void addPanels()
+	public void addPanels(Color c)
 	{
 		contentPanel = new JPanel();
-		contentPanel.setBackground(Color.black);
+		contentPanel.setBackground(c);
 		window.add(contentPanel);
 		
 		screenView = new JPanel(new GridLayout(1,1));
@@ -66,69 +63,6 @@ public class CalculatorView implements ActionListener
 		contentPanel.add(buttonPanel);
 	}
 	
-	public void addButtons()
-	{
-		//dropdown menu's for the format and base
-		baseMenu = new JComboBox<String>();
-		baseMenu.addItem("dec");
-		baseMenu.addItem("bin");
-		baseMenu.addItem("hex");
-		baseMenu.addItem("oct");
-		buttonPanel.add(baseMenu);
-		
-		pointFormatMenu = new JComboBox<String>();
-		pointFormatMenu.addItem("rat");
-		pointFormatMenu.addItem("fixed");
-		pointFormatMenu.addItem("float");
-		buttonPanel.add(pointFormatMenu);
-		
-		// .|=+-*/ 0
-		point = new JButton(".");	
-		divider = new JButton("|");		
-		answer = new JButton("=");	
-		zero = new JButton("0");	
-		plus = new JButton("+");
-		min = new JButton("-");
-		multiply = new JButton("*");
-		divide = new JButton("/");
-		
-		buttonPanel.add(point);
-		buttonPanel.add(divider);
-		buttonPanel.add(answer);
-		buttonPanel.add(zero);
-		buttonPanel.add(plus);
-		buttonPanel.add(min);
-		buttonPanel.add(multiply);
-		buttonPanel.add(divide);
-		
-		
-		// 1 to 9 and ABCDEF
-		for(int i = 0;i<9;i++){
-			buttons.add(new JButton(Integer.toString(i+1)));
-			buttonPanel.add(buttons.get(i));
-			
-			if(i == 2){
-				A = new JButton("A");
-				buttonPanel.add(A);
-				
-				B = new JButton("B");
-				buttonPanel.add(B);
-			}
-			if(i==5){
-				C = new JButton("C");
-				buttonPanel.add(C);
-				
-				D = new JButton("D");
-				buttonPanel.add(D);
-			}
-			if(i==8){
-				E = new JButton("E");
-				buttonPanel.add(E);
-				
-				F = new JButton("F");
-				buttonPanel.add(F);
-			}	
-		}
-	}
+	
 	
 }

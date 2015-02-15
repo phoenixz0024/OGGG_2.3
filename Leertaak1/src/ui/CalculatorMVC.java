@@ -1,5 +1,7 @@
 package ui;
 
+import java.awt.Color;
+
 public class CalculatorMVC 
 {
 	static CalculatorModel cm;
@@ -8,9 +10,10 @@ public class CalculatorMVC
 	
 	public static void main(String[] args)
 	{
+		cv = new CalculatorView(Color.blue);
 		cm = new CalculatorModel();
 		cc = new CalculatorController(cm);
-		cv = new CalculatorView();
+		
 		cm.addActionListener(cv);
 	}
 }
