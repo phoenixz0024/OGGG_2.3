@@ -64,6 +64,7 @@ public class Command {
         try{
         	calc.addOperand(command.substring(2).trim());
         }catch(FormatException e){
+        	if(CalculatorView.message!=null)
         	CalculatorView.message.setText("Wrong operand: " + e.getMessage());
           System.out.println("Wrong operand: " + e.getMessage());
         }
@@ -82,6 +83,7 @@ public class Command {
       }else if(command.equals("exit"))
     	  return false;
       else{
+    	  if(CalculatorView.message!=null)
     	  CalculatorView.message.setText("Error! Not a valid command");
     	  System.out.println("Error! Not a valid command");
       }

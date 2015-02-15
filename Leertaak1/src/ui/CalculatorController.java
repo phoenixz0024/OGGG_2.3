@@ -111,6 +111,31 @@ public class CalculatorController implements ActionListener
 	        if (e.getSource() == divide){
 	            cm.divide();
 	        }
+	        if (e.getSource() == baseMenu){
+	        	if(baseMenu.getSelectedItem().toString() == "bin"){
+	        		cm.setBase("bin");
+	        	}
+	        	if(baseMenu.getSelectedItem().toString() == "oct"){
+	        		cm.setBase("oct");
+	        	}
+	        	if(baseMenu.getSelectedItem().toString() == "hex"){
+	        		cm.setBase("hex");
+	        	}
+	        	if(baseMenu.getSelectedItem().toString() == "dec"){
+	        		cm.setBase("dec");
+	        	}
+	        }
+	        if (e.getSource() == pointFormatMenu){
+	        	if(pointFormatMenu.getSelectedItem().toString() == "rat"){
+	        		cm.setFormat("rat");
+	        	}
+	        	if(pointFormatMenu.getSelectedItem().toString() == "fixed"){
+	        		cm.setFormat("fixed");
+	        	}
+	        	if(pointFormatMenu.getSelectedItem().toString() == "float"){
+	        		cm.setFormat("float");
+	        	}
+	        }
 		}
 	 
 	 public static void addButtons()
@@ -124,9 +149,9 @@ public class CalculatorController implements ActionListener
 			CalculatorView.buttonPanel.add(baseMenu);
 			
 			pointFormatMenu = new JComboBox<String>();
-			pointFormatMenu.addItem("rat");
 			pointFormatMenu.addItem("fixed");
 			pointFormatMenu.addItem("float");
+			pointFormatMenu.addItem("rat");
 			CalculatorView.buttonPanel.add(pointFormatMenu);
 			
 			// .|=+-*/ 0

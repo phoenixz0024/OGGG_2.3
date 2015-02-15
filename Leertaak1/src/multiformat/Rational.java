@@ -1,5 +1,7 @@
 package multiformat;
 
+import ui.CalculatorView;
+
 /**
  * Class representing a rational ('breuk').
  * @author Kas Feenema & Rafael van den Berg
@@ -143,6 +145,8 @@ public class Rational
 	public Rational div(Rational other) 
 	{
 		if(other.getNumerator() == 0){
+			if(CalculatorView.message!=null)
+			CalculatorView.message.setText("Cannot divide by zero");
 			System.out.println("Cannot divide by zero");
 			return other;
 		}

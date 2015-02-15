@@ -59,6 +59,7 @@ public class CalculatorModel
 		case "oct": calc.setBase(new OctalBase());break;
 		case "hex": calc.setBase(new HexBase());break;
 		}
+		CalculatorView.message.setText("Base set to "+base);
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	
@@ -69,6 +70,7 @@ public class CalculatorModel
 		case "float": calc.setFormat(new FloatingPointFormat());break;
 		case "fixed": calc.setFormat(new FixedPointFormat());break;
 		}
+		CalculatorView.message.setText("Format set to "+format);
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	
