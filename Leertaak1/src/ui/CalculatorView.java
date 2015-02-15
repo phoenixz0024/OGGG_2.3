@@ -19,7 +19,7 @@ public class CalculatorView implements ActionListener
 	JFrame window;
 	JPanel contentPanel, screenView, messagePanel;
 	static JPanel buttonPanel, clearPanel;
-	JLabel screenText;
+	public static JLabel screenText;
 	public static JLabel message;
 
 	
@@ -37,11 +37,10 @@ public class CalculatorView implements ActionListener
 	
 	public void actionPerformed(ActionEvent e )
 	{	
-		
 		screenText.setText(CalculatorController.currentOperand);
 		if(CalculatorModel.done == true)
 			CalculatorController.currentOperand = "";
-		
+	
 		window.revalidate();
 	}
 	

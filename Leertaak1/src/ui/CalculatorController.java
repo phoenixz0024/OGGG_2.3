@@ -111,13 +111,17 @@ public class CalculatorController implements ActionListener
 	        		CalculatorView.message.setText("Divider can only be inserted if rational format is used");
 	        	}
 	        	else{
-	        	if(!currentOperand.contains("/"))
+	        	if(!currentOperand.contains("/")){
 	        		if(currentOperand.length()<1){
 	        			CalculatorView.message.setText("Insert a value first");
 	        		}
 	        		else{
 	        			currentOperand += "/";
 	        		}
+	        	}
+	        	else{
+	        		CalculatorView.message.setText("Operand already contains a \"/\"");
+	        	}
 	        	}
 	        }
 	        if (e.getSource() == plus){

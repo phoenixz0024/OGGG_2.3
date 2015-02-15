@@ -24,6 +24,7 @@ public class CalculatorModel
 		} 
 		catch (FormatException e) {
 			CalculatorView.message.setText(e.getMessage());
+			calc.delete();
 		}
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	}
@@ -42,10 +43,6 @@ public class CalculatorModel
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	    CalculatorController.currentOperand = calc.secondOperand();
 	    done = true;
-	    
-    	System.out.println(CalculatorController.currentOperand);
-    	System.out.println(calc.secondOperand());
-    	System.out.println(calc.firstOperand());
 	} 
 	
 	public void multiply()
@@ -61,8 +58,7 @@ public class CalculatorModel
 		calc.divide();
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	    CalculatorController.currentOperand = calc.secondOperand();
-	    done = true;
-	    
+	    done = true;    
 	} 
 	
 	public void setBase(String base)
@@ -91,6 +87,7 @@ public class CalculatorModel
 	public void clear()
 	{
 		calc.delete();
+		CalculatorView.screenText.setText("Insert a value..");
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	

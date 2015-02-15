@@ -36,25 +36,33 @@ public class Calculator {
 	  if(CalculatorView.message!=null)
 	  CalculatorView.message.setText("");
 	  
-	  if(base.getName() == "dec"&&(!newOperand.matches("[0123456789.]+"))){
+	  if(base.getName() == "dec"&&(!newOperand.matches("[0123456789/.]+"))){
 			 System.out.println("Insert a decimal value"); 
-			 if(CalculatorView.message!=null)
-			 CalculatorView.message.setText("Insert a decimal value");
+			 if(CalculatorView.message!=null&&CalculatorView.screenText!=null){
+				 CalculatorView.message.setText("Insert a decimal value");
+				 CalculatorView.screenText.setText("Insert a value..");
+	  		 }	
 	  }
-	  else if(base.getName() == "hex"&&(!newOperand.matches("[0123456789ABCDEF]+"))){
+	  else if(base.getName() == "hex"&&(!newOperand.matches("[0123456789ABCDEF/]+"))){
 			  System.out.println("Insert a hexadecimal value"); 
-			  if(CalculatorView.message!=null)
-			  CalculatorView.message.setText("Insert a hexadecimal value");
+			  if(CalculatorView.message!=null&&CalculatorView.screenText!=null){
+				  CalculatorView.message.setText("Insert a hexadecimal value");
+				  CalculatorView.screenText.setText("Insert a value..");
+			  }
 	  }
-	  else if(base.getName() == "bin"&&(!newOperand.matches("[01]+"))){
+	  else if(base.getName() == "bin"&&(!newOperand.matches("[01/]+"))){
 			  System.out.println("Insert a binary value"); 
-			  if(CalculatorView.message!=null)
-			  CalculatorView.message.setText("Insert a binary value");
+			  if(CalculatorView.message!=null&&CalculatorView.screenText!=null){
+				  CalculatorView.message.setText("Insert a binary value");
+				  CalculatorView.screenText.setText("Insert a value..");
+			  }
 	  }
-	  else if(base.getName() == "oct"&&(!newOperand.matches("[01234567]+"))){
+	  else if(base.getName() == "oct"&&(!newOperand.matches("[01234567/]+"))){
 			  System.out.println("Insert an octal value"); 
-			  if(CalculatorView.message!=null)
-			  CalculatorView.message.setText("Insert a octal value");
+			  if(CalculatorView.message!=null&&CalculatorView.screenText!=null){
+				  CalculatorView.message.setText("Insert a octal value");
+				  CalculatorView.screenText.setText("Insert a value..");
+			  }
 	  }
 	  else{	  
 		  operand_1 = operand_0;

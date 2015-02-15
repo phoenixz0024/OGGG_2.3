@@ -29,25 +29,25 @@ public class TestNumberBaseException
 		try{
 			calc.setBase(new BinaryBase());
 			calc.addOperand("1");
-			if(!calc.secondOperand().matches("[01.]+")){
+			if(!calc.secondOperand().matches("[01./]+")){
 				throw new NumberBaseException("Not a valid operand");
 			}
 			
 			calc.setBase(new DecimalBase());
 			calc.addOperand("1.0");
-			if(!calc.secondOperand().matches("[0123456789.]+")){
+			if(!calc.secondOperand().matches("[0123456789./]+")){
 				throw new NumberBaseException("Not a valid operand");
 			}
 			
 			calc.setBase(new HexBase());
 			calc.addOperand("1A");
-			if(!calc.secondOperand().matches("[0123456789ABCDEF.]+")){
+			if(!calc.secondOperand().matches("[0123456789ABCDEF./]+")){
 				throw new NumberBaseException("Not a valid operand");
 			}
 			
 			calc.setBase(new OctalBase());
 			calc.addOperand("7");
-			if(!calc.secondOperand().matches("[01234567.]+")){
+			if(!calc.secondOperand().matches("[01234567./]+")){
 				throw new NumberBaseException("Not a valid operand");
 			}	
 		}
