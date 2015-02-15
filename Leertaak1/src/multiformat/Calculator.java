@@ -18,6 +18,7 @@
  */
 package multiformat;
 
+import ui.CalculatorController;
 import ui.CalculatorView;
 
 /**
@@ -67,6 +68,9 @@ public class Calculator {
 	  else{	  
 		  operand_1 = operand_0;
 	      operand_0 = format.parse(newOperand, base);
+	  }
+	  if(CalculatorView.message!=null&&CalculatorView.screenText!=null){
+		  CalculatorController.cm.update();
 	  }
   }
 

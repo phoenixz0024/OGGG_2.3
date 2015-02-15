@@ -9,7 +9,7 @@ import javax.swing.JComboBox;
 
 public class CalculatorController implements ActionListener
 {
-	CalculatorModel cm;
+	public static CalculatorModel cm;
 	static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	static JButton zero,A,B,C,D,E,F,point,divider,plus,min,multiply,divide,answer, clear;
 	static JComboBox baseMenu,pointFormatMenu;
@@ -43,7 +43,6 @@ public class CalculatorController implements ActionListener
 		
 		baseMenu.addActionListener(this);
 		pointFormatMenu.addActionListener(this);
-
 	}
 	
 	 public void actionPerformed(ActionEvent e)

@@ -13,7 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
+/**
+ * 
+ * @author Kas Feenema & Rafael van den Berg
+ *
+ */
 public class CalculatorView implements ActionListener
 {
 	JFrame window;
@@ -21,8 +25,6 @@ public class CalculatorView implements ActionListener
 	static JPanel buttonPanel, clearPanel;
 	public static JLabel screenText;
 	public static JLabel message;
-
-	
 	
 	public CalculatorView(Color c)
 	{
@@ -40,7 +42,7 @@ public class CalculatorView implements ActionListener
 		screenText.setText(CalculatorController.currentOperand);
 		if(CalculatorModel.done == true)
 			CalculatorController.currentOperand = "";
-	
+			
 		window.revalidate();
 	}
 	
@@ -82,7 +84,4 @@ public class CalculatorView implements ActionListener
 		clearPanel.setPreferredSize(new Dimension(380,20));
 		contentPanel.add(clearPanel);
 	}
-	
-	
-	
 }

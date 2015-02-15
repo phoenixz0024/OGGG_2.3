@@ -70,6 +70,7 @@ public class CalculatorModel
 		case "hex": calc.setBase(new HexBase());break;
 		}
 		CalculatorView.message.setText("Base set to "+base);
+		CalculatorController.currentOperand = "";
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	
@@ -81,13 +82,14 @@ public class CalculatorModel
 		case "fixed": calc.setFormat(new FixedPointFormat());break;
 		}
 		CalculatorView.message.setText("Format set to "+format);
+		CalculatorController.currentOperand = "";
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	
 	public void clear()
 	{
 		calc.delete();
-		CalculatorView.screenText.setText("Insert a value..");
+		CalculatorController.currentOperand = "";
 	    processEvent( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));
 	} 
 	
