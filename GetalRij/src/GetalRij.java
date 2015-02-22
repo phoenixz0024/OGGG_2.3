@@ -74,8 +74,43 @@ public class GetalRij {
 		return exist;
 	}
 
+	/**
+	 * linear search with better algorithm ( using a third variable called middle which represents the middle
+	 * of an array )
+	 * @param zoekWaarde
+	 * @return
+	 */
 	public boolean zitErinC( int zoekWaarde ){
-		return false;
+		
+		
+		boolean found = false;
+		
+		int lowEnd = 0;
+		int highEnd = getallen.length - 1;
+		
+		
+		while(highEnd >= lowEnd && found == false){
+			
+			int middle = (highEnd + lowEnd) / 2;
+			System.out.println(getallen[middle]);
+			
+			if( getallen[middle] == zoekWaarde){
+				
+				// zoekWaarde has been found at this index
+				found = true;
+
+			}
+			else if (getallen[middle] > zoekWaarde){
+				
+				highEnd = middle - 1;
+			}
+			else {
+				lowEnd = middle + 1;
+			}
+			
+		}
+		
+		return found;
 	}
 
 	public boolean zitErinD( int zoekWaarde ){

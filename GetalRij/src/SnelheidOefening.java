@@ -7,13 +7,13 @@ public class SnelheidOefening {
 	 * @param args
 	 */
 	public static void main( String[] args){
-		GetalRij gr = new GetalRij( 100000, 200000);
+		GetalRij gr = new GetalRij( 1000000, 2000000);
 		
 		long starttime = tijd();
-		System.out.println(gr.zitErinB(33));
+		gr.zitErinB(32);	
 		long endtime = tijd();
 		
-		totaltime = endtime - starttime;
+		totaltime = (endtime - starttime);
 		
 		System.out.println("startime = " + starttime);
 		System.out.println("end = " + endtime);
@@ -22,6 +22,9 @@ public class SnelheidOefening {
 
 	// Hulpmethode voor tijdsbepaling
 	private static long tijd(){
+		
+		
+		
 		return System.currentTimeMillis();
 	}
 
