@@ -33,44 +33,39 @@ public class Solution extends Stack<Candidate>
 	 // @param row, column, candidate
 	 // @return Boolean indicating if cardChar is found.
 	 // can be used in the methods fits and isCorrect
-	private boolean bordersCard(int row, int column, char cardChar){
-		 if(cardChar == ' ') {
+	private boolean bordersCard(int row, int column, char cardChar)
+	{
+		Candidate adjacent;
+		 if(cardChar == ' '){
 			 return false;
-			 }
-			//HOE WERKT HET BEPALEN VAN EEN NEIGHBOE VIA BOARD
-		 	 //boven
-			 if(row > 0) {
-				 Candidate neighbor = board[row - 1][column];
-				 if(neighbor != null && neighbor.getCardChar() == cardChar) {
+		 }
+			 if(row > 0) { //Boven
+				 adjacent = board[row - 1][column];
+				 if(adjacent != null && adjacent.getCardChar() == cardChar) {
 					 return true;
 				 }
 			 }
-			 
-			 //onder
-			 if(row < board[0].length - 1) {
-				 Candidate neighbor = board[row + 1][column];
-				 if(neighbor != null && neighbor.getCardChar() == cardChar) {
+			 if(row < 2) { //Onder
+				 adjacent = board[row + 1][column];
+				 if(adjacent != null && adjacent.getCardChar() == cardChar) {
 					 return true;
 				 }
 			 }
-			 
-			 //rechts
-			 if(column > 0) {
-				 Candidate neighbor = board[row][column - 1];
-				 if(neighbor != null && neighbor.getCardChar() == cardChar) {
+			 if(column > 0) { //Links
+				 adjacent = board[row][column - 1];
+				 if(adjacent != null && adjacent.getCardChar() == cardChar) {
 					 return true;
 				 }
 			 }
-			 
-			 //links
-			 if(column < board.length - 1) {
-				 Candidate neighbor = board[row][column + 1];
-				 if(neighbor != null && neighbor.getCardChar() == cardChar) {
+			 if(column < 2) { //Rechts
+				 adjacent = board[row][column + 1];
+				 if(adjacent != null && adjacent.getCardChar() == cardChar) {
 					 return true;
 				 }
 			 }
 			 return false;
     }
+	
 	
 	
 	/**
@@ -152,7 +147,7 @@ public class Solution extends Stack<Candidate>
 			//(Wat resulteerd in het returnen van een vraagteken.
 			if(candidate != null && mustBeAdjacentChar != '?') {
 				if(!bordersCard(this.row[i], this.column[i], mustBeAdjacentChar)) {
-					//Als de candidate grenst aan de verkeerde candidate
+					//Als de candidate niet grenst aan de jusite candidate
 					//Dan returned bordersCard false. Wanneer dit gebeurd is de candidate
 					//verkeerd geplaatst en returned isCorrect() false.
 					return false;

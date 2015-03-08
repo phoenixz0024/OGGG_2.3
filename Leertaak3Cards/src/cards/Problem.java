@@ -19,6 +19,7 @@ public static void solve()
      {
          if (solution.fits(candidates.get(index)))
          {
+        	// showSolution();
              solution.record(candidates.remove(index)); //move candidate to solution
              if (solution.complete())
              {
