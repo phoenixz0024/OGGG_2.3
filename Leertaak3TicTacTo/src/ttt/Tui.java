@@ -36,6 +36,7 @@ class Tui
         {
             int compMove=t.chooseMove();
             System.out.println("Computer Move = " + compMove);
+            System.out.println();
             return compMove;
         }
         else
@@ -43,8 +44,8 @@ class Tui
             int humanMove;
             do
             {
-                System.out.print("Human move    = ");
-                // enter integer for the position on the tictactoe board
+                System.out.print("Human move(0..8)    = ");
+                System.out.println();
                 // 012
                 // 345
                 // 678

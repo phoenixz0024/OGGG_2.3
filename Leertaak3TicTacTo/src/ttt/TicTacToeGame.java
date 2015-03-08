@@ -15,12 +15,11 @@ class TicTacToe
 	public  static final int UNCLEAR      = 2;
 	public  static final int COMPUTER_WIN = 3;
 
-	private int [ ] [ ] board = new int[ 3 ][ 3 ];
+	int [ ] [ ] board = new int[ 3 ][ 3 ];
     private Random random=new Random();  
 	private int side=random.nextInt(2);  
 	private int position=UNCLEAR;
 	private char emptyChar, computerChar, humanChar;
-	private Map<int[][], Integer> positions = new HashMap<int[][], Integer>();
 
 	// Constructor
 	public TicTacToe( )
@@ -55,20 +54,22 @@ class TicTacToe
 
 	public int chooseMove()
 	{
-		positions.clear();
-		System.out.println("Values           : ");
-		System.out.println(COMPUTER);
-		System.out.println(HUMAN_WIN);
-		System.out.println(COMPUTER_WIN);
-	    Best best = chooseMove(COMPUTER ,0,HUMAN_WIN, COMPUTER_WIN);
+	    Best best = chooseMove(COMPUTER,HUMAN_WIN, COMPUTER_WIN);
 	    return best.row*3+best.column;
     }
     
-	private Best chooseMove(int side, int amountCheckedBestMoves, int human, int computer)
+	/**
+	 * Chooses the best move
+	 * @param side
+	 * @param human
+	 * @param computer
+	 * @return
+	 */
+	private Best chooseMove(int side, int human, int computer)
 	{
-		int opp; // The other side
-		Best reply; // Opponent's best reply
-		int simpleEval; // Result of an immediate evaluation
+		int opponent;
+		Best reply; 
+		int simpleEval; 
 		int bestRow = 0;
 		int bestColumn = 0;
 		int value;
@@ -77,42 +78,24 @@ class TicTacToe
 			return new Best(simpleEval);
 		}
 		
-		// TODO: implementeren m.b.v. recursie/backtracking
-		int[][] tmpBoard = board.clone();
-		if (amountCheckedBestMoves >= 3 && amountCheckedBestMoves <= 5){
-			Integer pos = positions.get(tmpBoard);
-			if (pos != null){
-				return new Best(pos);
-			}
-		}
-		
 		if (side == COMPUTER){
-			opp = HUMAN;
+			opponent = HUMAN;
 			value = human;
 		}
 		else{
-			opp = COMPUTER;
+			opponent = COMPUTER;
 			value = computer;
 		}
 		
-		for (int i = 0; i < (board.length * board[0].length); i++){
-			int row = i / board.length;
-			int column = i % board[0].length;
+		for (int i = 0; i < 9; i++){
+			int row = i / 3;
+			int column = i % 3;
 			
-			// First check if the row, column combination is empty
-			// If there is already a side on the board.. there's no need to check if it is the best move
 			if (squareIsEmpty(row, column)){
-				// After that place the current side on the board
-				place(row, column, side);
-				// Check if this is the best move or not
-				reply = chooseMove(opp, amountCheckedBestMoves + 1, human, computer);
-				// Remove the current side from the board again
-				// So we can check whether this was the best move or not below
-				place(row, column, EMPTY);
-				// Is the current side a human? and was this the best move for the human?
-				// Is the current side a computer? and was this the best move for the computer?
+				place(row, column, side, board);
+				reply = chooseMove(opponent, human, computer);
+				place(row, column, EMPTY , board);	
 				if (side == HUMAN && reply.val < value || side == COMPUTER && reply.val > value){
-					// Update the values of the opposite side
 					if (side == HUMAN){
 						computer = reply.val;
 						value = computer;
@@ -126,9 +109,6 @@ class TicTacToe
 					if (human >= computer) break;
 				}
 			}
-		}
-		if (amountCheckedBestMoves <= 5){
-			positions.put(tmpBoard, value);
 		}
 		return new Best(value, bestRow, bestColumn);
 	}
@@ -154,7 +134,7 @@ class TicTacToe
 	{
 		for(int x = 0; x<this.board.length; x++){
 			for(int y=0; y<this.board[x].length; y++){
-				place(x, y, EMPTY);
+				place(x, y, EMPTY, board);
 			}
 		}
 	}
@@ -174,45 +154,26 @@ class TicTacToe
 	// Returns whether 'side' has won in this position
 	private boolean isAWin( int side )
 	{
-		int[][][] winning = {
-			{{0,0}, {1,0}, {2,0}}, //vertical
-			{{0,1}, {1,1}, {2,1}}, //vertical
-			{{0,2}, {1,2}, {2,2}}, //vertical
-			{{0,0}, {0,1}, {0,2}}, //horizontal
-			{{1,0}, {1,1}, {1,2}}, //horizontal
-			{{2,0}, {2,1}, {2,2}}, //horizontal
-			{{0,0}, {1,1}, {2,2}}, //diagonal
-			{{0,2}, {1,1}, {2,0}} //diagonal
-		};
-			
-		int x = 9; //0 (null) is used on the board, 9 isn't
-		int y = 9;
-		int win = 0; //we need a row of 3, stored in here.
-	
-		for( int[][] id : winning ){
-			for( int[] temp : id){
-				for( int value : temp){
-					if(x == 9){ 
-						x = value;
-					}
-					else{ 
-						y = value;
-					}
-				}
-				if(this.board[x][y] == side){
-					win++;
-				}
-				x=9; //clear x coordinate
-			}
-			if(win == 3) return true;
-			win = 0;
+		if(side == board[0][0]){
+			if(side == board[1][0] && side == board[2][0])return true;
+			if(side == board[0][1] && side == board[0][2])return true;
+		}
+		if(side == board[1][1]){
+			if(side == board[0][0] && side == board[2][2])return true;
+			if(side == board[0][2] && side == board[2][0])return true;
+			if(side == board[1][0] && side == board[1][2])return true;
+			if(side == board[0][1] && side == board[2][1])return true;
+		}
+		if(side == board[2][2]){
+			if(side == board[2][1] && side == board[2][0])return true;
+			if(side == board[1][2] && side == board[0][2])return true;
 		}
 		return false;
 	}
 	 
 
 	// Play a move, possibly clearing a square
-	private void place( int row, int column, int piece )
+	private void place( int row, int column, int piece , int[][] board)
 	{
 		board[ row ][ column ] = piece;
 	}
@@ -223,7 +184,7 @@ class TicTacToe
 	}
 
 	// Compute static value of current position (win, draw, etc.)
-	private int positionValue( )
+	int positionValue( )
 	{
 		if (isAWin(COMPUTER))
 			return COMPUTER_WIN;
@@ -238,22 +199,22 @@ class TicTacToe
 	
 	public String toString()
 	{
-		String rtrn = "";
+		String temp = "      ";
 		for(int x = 0; x<board.length; x++){
 			for(int y=0; y<board[x].length; y++){
 				if(board[x][y] == HUMAN){
-				rtrn += humanChar;
+					temp += humanChar;
 			}
 			else if(board[x][y] == COMPUTER){
-				rtrn += computerChar;
+				temp += computerChar;
 			}
 			else{
-				rtrn += emptyChar;
+				temp += emptyChar;
 			}
 			}
-			rtrn += "\n";
+			temp += "\n      ";
 		}
-		return rtrn; 
+		return temp; 
 	}  
 	
 	public boolean gameOver()
